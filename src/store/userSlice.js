@@ -60,8 +60,10 @@ const userSlice = createSlice({
     error: null,
   },
   reducers: {
-    signOut: (state) => {
+    signOutUser: (state) => {
+      state.loading = false;
       state.currentUser = {};
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -95,4 +97,4 @@ const userSlice = createSlice({
 export const userReducer = userSlice.reducer;
 
 export { fetchUser, signupUser };
-export const { signOut } = userSlice.actions;
+export const { signOutUser } = userSlice.actions;

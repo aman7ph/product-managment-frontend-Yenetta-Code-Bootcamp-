@@ -147,7 +147,15 @@ const productSlice = createSlice({
     error: null,
     message: "",
   },
-  reducers: {},
+  reducers: {
+    signOutProduct: (state) => {
+      state.loading = false;
+      state.products = [];
+      state.singleProduct = {};
+      state.error = null;
+      state.message = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProduct.pending, (state) => {
@@ -227,3 +235,4 @@ export {
   deleteProduct,
   editProduct,
 };
+export const { signOutProduct } = productSlice.actions;

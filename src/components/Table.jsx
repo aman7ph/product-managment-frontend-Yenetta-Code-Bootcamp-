@@ -4,7 +4,8 @@ import { MdDeleteForever } from "react-icons/md";
 import { BiDetail } from "react-icons/bi";
 
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../store/userSlice";
+import { signOutUser } from "../store/userSlice";
+import { signOutProduct } from "../store/productSlice";
 import { fetchProduct, fetchAllProduct } from "../store/productSlice";
 
 import Add from "./Modal/Add";
@@ -25,6 +26,11 @@ const Table = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const Toggle = () => setModal(!modal);
+
+  const handleSignOut = () => {
+    dispatch(signOutUser());
+    dispatch(signOutProduct());
+  };
 
   useEffect(() => {
     dispatch(fetchProduct());
@@ -59,10 +65,7 @@ const Table = () => {
           ) : (
             ""
           )}
-          <button
-            className="add_new clickme logout"
-            onClick={() => dispatch(signOut())}
-          >
+          <button className="add_new clickme logout" onClick={handleSignOut}>
             Logout
           </button>
         </div>
